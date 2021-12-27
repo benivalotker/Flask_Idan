@@ -9,8 +9,4 @@ def index():
     data = request.json
 
     # TODO: return html file home_page.html
-    response = {
-        "Request_Methods": "Home Page",
-    }
-
-    return response
+    return "<h1>Home Page</h1>"
