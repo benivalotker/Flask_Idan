@@ -1,4 +1,5 @@
 import config
+from services import mondodb_manager
 from flask import Blueprint, request, redirect, render_template
 
 user_login = Blueprint(name='user_login', import_name=__name__, template_folder='templates')
@@ -11,9 +12,13 @@ def index():
     # body request data
     data = request.json
 
-    # TODO: check the user_name & password from DB
-    if data:
-        if data.get("user_name") == "beni" and data.get("password") == "A12345":
+    # TODO: get user_name from html form
+    # get password from mongodb
+    login_res = mondodb_manager.get_data("login", {"user_name": "beni"})
+    print(login_res)
+    if login_res:
+        # TODO: get password from html form
+        if login_res.get("password") == "A12345":
             # redirect to home page
             return redirect(f"{config.base_url}/home_page/", code=307)
         else:
@@ -31,4 +36,3 @@ def index():
     print("user disconnect")
 
     return {"operation": "disconnect"}
-
