@@ -3,7 +3,7 @@ from flask import Blueprint, request, render_template
 home_page = Blueprint(name='home_page', import_name=__name__)
 
 
-@home_page.route('/', methods=['GET'])
+@home_page.route('/', methods=['GET', 'POST'])
 def index():
     # body request data
     data = request.json

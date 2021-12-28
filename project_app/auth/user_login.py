@@ -6,25 +6,30 @@ user_login = Blueprint(name='user_login', import_name=__name__, template_folder=
 user_disconnect = Blueprint(name='user_disconnect', import_name=__name__, template_folder='templates')
 
 
-@user_login.route('/', methods=['GET'])
+@user_login.route('/', methods=['GET', 'POST'])
 def index():
     title = "Login"
-    # body request data
-    data = request.json
+    message = ''
 
-    # TODO: get user_name from html form
-    # get password from mongodb
-    login_res = mondodb_manager.get_data("login", {"user_name": "beni"})
-    print(login_res)
-    if login_res:
-        # TODO: get password from html form
-        if login_res.get("password") == "A12345":
-            # redirect to home page
-            return redirect(f"{config.base_url}/home_page/", code=307)
+    # if the data came from the "form_login"
+    if request.method == 'POST':
+        # read user and pass from mongodb
+        user_name = request.form.get('user_name')
+        password = request.form.get('password')
+
+        # get password from mongodb
+        login_res = mondodb_manager.get_data("login", {"user_name": user_name, "password": password})
+
+        if login_res:
+            if login_res.get("password") == password:
+                # redirect to home page
+                return redirect(f"{config.base_url}/home_page/", code=307)
+            else:
+                message = {"msg": "Login Error"}
         else:
-            return render_template("login/templates.login_page", data={"msg": "Login Error"}, title=title)
-    else:
-        return render_template("login/login_page.html", data={"msg": "Login Error"}, title=title)
+            message = {"msg": "Login Error"}
+
+    return render_template("login/login_page.html", message=message, title=title)
 
 
 @user_disconnect.route('/user_disconnect', methods=['GET'])

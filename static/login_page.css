@@ -1,0 +1,52 @@
+#login_page{
+    background-color: #0c1136;
+    height: 100vh;
+
+}
+
+#login_page h1{
+    color: #ffffff;
+    margin-left: 8%;
+    padding-top: 20%;
+}
+
+#login_page h5{
+    color: #505e6d;
+    margin-left: 8%;
+    padding-top: 3%;
+}
+
+#login_page h4{
+    color: #eeeeef;
+    margin-left: 55%;
+    margin-top: 10%;
+}
+
+#login_page form {
+    padding-top: 3%;
+    margin-left: 8%;
+}
+
+#login_page form label{
+    color: #60707b;
+    font-size: 1.5vh;
+}
+
+#login_page form input{
+    color: #f6f6f7;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    background-color: transparent;
+    width: 80%;
+}
+
+#login_page button{
+    background-color: #edc611;
+    width: 80%;
+    height: 8%;
+    margin-left: 8%;
+    border-radius: 30px;
+    margin-top: 31%;
+}

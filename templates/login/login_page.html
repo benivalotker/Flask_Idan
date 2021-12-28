@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
 
 {% block main %}
-  <h1>{{ data.msg }}</h1>
+<div id="login_page">
+  <h1>Welcome Back !</h1>
+  <h5>Please enter your credentials proceed</h5>
+
+  <form action="{{ url_for('user_login.index') }}" method="POST" id="login_form">
+    <label for="user_name">Email:</label><br>
+    <input type="text" id="user_name" name="user_name"><br>
+    <label for="password">Password:</label><br>
+    <input type="text" id="password" name="password"><br><br>
+  </form>
+
+  <h5 style="color: red;">{{ message.msg }}</h5>
+  <h4>Forget Password?</h4>
+  <button type="submit" form="login_form" value="Submit">Sign In</button>
+
+
+</div>
 {% endblock %}
